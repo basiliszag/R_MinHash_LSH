@@ -102,41 +102,23 @@ hex_to_int = function(h) {
 
 
 
-start.time <- Sys.time()
+# hashCode to each element of doc2 
+# then convert hex to int
+myFunction <- function(x,y) {
+  hex_to_int(digest( doc2[[x]][y] , algo = 'xxhash32' ))
+}
 
 
-doc3 <- for (i in 1:length(doc2)) {
+
+
+# apply that to entire doc2
+red <- vector(mode='list', length =length(doc2))
+for (i in 1:length(doc2)) {
   for (j in 1: length(doc2[[i]])) {
-    digest(doc2[[i]][j], algo = 'xxhash32')
+    red[[i]][j] <- myFunction(i,j)
   }
 }
 
-end.time <- Sys.time()
-end.time - start.time
 
 
 
-
-
-
-
-################### old try ###############################
-
-# find hashcodes for each shingle
-hashCodeFunction <- function(y) {
-  lapply(doc2[[y]], function(x) { 
-  hex_to_int(digest(x, algo = 'xxhash32'))
-  })
-}
-
-#doc2hashed <- lapply(doc2[[2]], function(x) { 
-#  hex_to_int(digest(x, algo = 'xxhash32'))
-#})
-
-
-doc2Hashed <- for(i in 1:length(doc2)) {
-  lapply(doc2[[i]], function(x) { 
-    hex_to_int(digest(x, algo = 'xxhash32'))
-    })
-}
-  
