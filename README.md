@@ -1,5 +1,5 @@
 # R_MinHash_LSH
-reuters
 
 
-This is the assignment
+
+Using Reuters data set apply minhash and LSH algorithms in order to identify the N nearest neighbors of a given text.
